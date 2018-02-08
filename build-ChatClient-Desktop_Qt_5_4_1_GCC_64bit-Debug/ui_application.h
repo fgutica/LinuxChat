@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
@@ -31,13 +32,16 @@ class Ui_Application
 {
 public:
     QAction *actionConnect_to_server;
+    QAction *action_save_convo;
     QWidget *centralWidget;
     QGridLayout *gridLayout_2;
     QGridLayout *gridLayout;
-    QLineEdit *msgEdit;
-    QListView *clientList;
-    QPushButton *btnSend;
+    QLabel *label;
+    QListView *listUsers;
     QTextBrowser *txtConvo;
+    QLabel *label_2;
+    QPushButton *btnSend;
+    QLineEdit *msgEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -47,8 +51,12 @@ public:
         if (Application->objectName().isEmpty())
             Application->setObjectName(QStringLiteral("Application"));
         Application->resize(845, 472);
+        Application->setStyleSheet(QLatin1String("background-color: #424242;\n"
+"color: white;"));
         actionConnect_to_server = new QAction(Application);
         actionConnect_to_server->setObjectName(QStringLiteral("actionConnect_to_server"));
+        action_save_convo = new QAction(Application);
+        action_save_convo->setObjectName(QStringLiteral("action_save_convo"));
         centralWidget = new QWidget(Application);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout_2 = new QGridLayout(centralWidget);
@@ -58,26 +66,46 @@ public:
         gridLayout = new QGridLayout();
         gridLayout->setSpacing(6);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        msgEdit = new QLineEdit(centralWidget);
-        msgEdit->setObjectName(QStringLiteral("msgEdit"));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
 
-        gridLayout->addWidget(msgEdit, 1, 1, 1, 1);
+        gridLayout->addWidget(label, 0, 0, 1, 1);
 
-        clientList = new QListView(centralWidget);
-        clientList->setObjectName(QStringLiteral("clientList"));
-        clientList->setMaximumSize(QSize(250, 16777215));
+        listUsers = new QListView(centralWidget);
+        listUsers->setObjectName(QStringLiteral("listUsers"));
+        listUsers->setMaximumSize(QSize(175, 16777215));
+        listUsers->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"background: #BDBDBD;\n"
+"color: black;"));
 
-        gridLayout->addWidget(clientList, 0, 0, 1, 1);
-
-        btnSend = new QPushButton(centralWidget);
-        btnSend->setObjectName(QStringLiteral("btnSend"));
-
-        gridLayout->addWidget(btnSend, 1, 2, 1, 1);
+        gridLayout->addWidget(listUsers, 1, 0, 1, 1);
 
         txtConvo = new QTextBrowser(centralWidget);
         txtConvo->setObjectName(QStringLiteral("txtConvo"));
+        txtConvo->setStyleSheet(QLatin1String("border-radius: 10px;\n"
+"background: #BDBDBD;\n"
+"color: black;"));
 
-        gridLayout->addWidget(txtConvo, 0, 1, 1, 2);
+        gridLayout->addWidget(txtConvo, 1, 1, 1, 3);
+
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+
+        gridLayout->addWidget(label_2, 0, 1, 1, 1);
+
+        btnSend = new QPushButton(centralWidget);
+        btnSend->setObjectName(QStringLiteral("btnSend"));
+        btnSend->setMaximumSize(QSize(16777215, 50));
+        btnSend->setStyleSheet(QStringLiteral(""));
+
+        gridLayout->addWidget(btnSend, 2, 2, 1, 2);
+
+        msgEdit = new QLineEdit(centralWidget);
+        msgEdit->setObjectName(QStringLiteral("msgEdit"));
+        msgEdit->setMaxLength(512);
+
+        gridLayout->addWidget(msgEdit, 2, 1, 1, 1);
 
 
         gridLayout_2->addLayout(gridLayout, 0, 0, 1, 1);
@@ -85,7 +113,7 @@ public:
         Application->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(Application);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 845, 30));
+        menuBar->setGeometry(QRect(0, 0, 845, 25));
         Application->setMenuBar(menuBar);
         mainToolBar = new QToolBar(Application);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -95,6 +123,8 @@ public:
         Application->setStatusBar(statusBar);
 
         mainToolBar->addAction(actionConnect_to_server);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(action_save_convo);
 
         retranslateUi(Application);
 
@@ -105,6 +135,9 @@ public:
     {
         Application->setWindowTitle(QApplication::translate("Application", "Application", 0));
         actionConnect_to_server->setText(QApplication::translate("Application", "Connect to server", 0));
+        action_save_convo->setText(QApplication::translate("Application", "Save Conversation", 0));
+        label->setText(QApplication::translate("Application", "Users:", 0));
+        label_2->setText(QApplication::translate("Application", "Conversation:", 0));
         btnSend->setText(QApplication::translate("Application", "Send", 0));
     } // retranslateUi
 

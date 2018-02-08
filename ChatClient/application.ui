@@ -13,32 +13,77 @@
   <property name="windowTitle">
    <string>Application</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: #424242;
+color: white;</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="msgEdit"/>
-      </item>
       <item row="0" column="0">
-       <widget class="QListView" name="clientList">
-        <property name="maximumSize">
-         <size>
-          <width>250</width>
-          <height>16777215</height>
-         </size>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Users:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
+      <item row="1" column="0">
+       <widget class="QListView" name="listUsers">
+        <property name="maximumSize">
+         <size>
+          <width>175</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background: #BDBDBD;
+color: black;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="3">
+       <widget class="QTextBrowser" name="txtConvo">
+        <property name="styleSheet">
+         <string notr="true">border-radius: 10px;
+background: #BDBDBD;
+color: black;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Conversation:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2" colspan="2">
        <widget class="QPushButton" name="btnSend">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <property name="text">
          <string>Send</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" colspan="2">
-       <widget class="QTextBrowser" name="txtConvo"/>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="msgEdit">
+        <property name="maxLength">
+         <number>512</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -50,7 +95,7 @@
      <x>0</x>
      <y>0</y>
      <width>845</width>
-     <height>30</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
@@ -62,11 +107,18 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionConnect_to_server"/>
+   <addaction name="separator"/>
+   <addaction name="action_save_convo"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionConnect_to_server">
    <property name="text">
     <string>Connect to server</string>
+   </property>
+  </action>
+  <action name="action_save_convo">
+   <property name="text">
+    <string>Save Conversation</string>
    </property>
   </action>
  </widget>
